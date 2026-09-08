@@ -104,7 +104,7 @@ travel_unbounded/
   "message": "Thank you! Our travel expert will contact you within 24 hours.",
   "data": {
     "id": "60d5ecb8b392...",
-    "createdAt": "2024-05-10T10:00:00.000Z"
+    "createdAt": "2026-09-08T10:00:00.000Z"
   }
 }
 ```
@@ -144,7 +144,7 @@ Alternatively, it can be deployed on any platform supporting Next.js (e.g., Netl
 ## Assumptions
 
 - Destination pricing and data (`src/data/destinations.ts`) are dummy data representations for Phase 1.
-- Most destination images are sourced from Unsplash. The Iceland Waterfalls and Sri Lanka Tea Plantations images are stored locally in `public/images/` for reliable deployment.
+- All destination images are sourced from Unsplash. For reliability, the Iceland Waterfalls and Sri Lanka Tea Plantations images were downloaded from Unsplash and are stored locally in `public/images/`, while the remaining destination images use Unsplash image URLs.
 
 ## Features Not Included
 
