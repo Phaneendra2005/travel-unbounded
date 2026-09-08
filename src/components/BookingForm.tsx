@@ -112,7 +112,7 @@ export default function BookingForm() {
           <input
             id="fullName"
             type="text"
-            className={`w-full px-4 py-3 rounded-lg border ${errors.fullName ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+            className={`w-full px-4 py-3 rounded-lg border ${errors.fullName ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900 placeholder-gray-500`}
             placeholder="John Doe"
             {...register('fullName')}
             disabled={isSubmitting}
@@ -126,15 +126,15 @@ export default function BookingForm() {
             <label htmlFor="countryCode" className="block text-sm font-medium text-gray-700 mb-1">Code *</label>
             <select
               id="countryCode"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 text-gray-900"
               {...register('countryCode')}
               disabled={isSubmitting}
             >
-              <option value="+91">+91 (IN)</option>
-              <option value="+1">+1 (US/CA)</option>
-              <option value="+44">+44 (UK)</option>
-              <option value="+61">+61 (AU)</option>
-              <option value="+971">+971 (AE)</option>
+              <option value="+91" className="text-gray-900 bg-white">+91 (IN)</option>
+              <option value="+1" className="text-gray-900 bg-white">+1 (US/CA)</option>
+              <option value="+44" className="text-gray-900 bg-white">+44 (UK)</option>
+              <option value="+61" className="text-gray-900 bg-white">+61 (AU)</option>
+              <option value="+971" className="text-gray-900 bg-white">+971 (AE)</option>
             </select>
             {errors.countryCode && <p className="mt-1 text-sm text-red-600">{errors.countryCode.message}</p>}
           </div>
@@ -143,7 +143,7 @@ export default function BookingForm() {
             <input
               id="contactNumber"
               type="tel"
-              className={`w-full px-4 py-3 rounded-lg border ${errors.contactNumber ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+              className={`w-full px-4 py-3 rounded-lg border ${errors.contactNumber ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900 placeholder-gray-500`}
               placeholder="9876543210"
               {...register('contactNumber')}
               disabled={isSubmitting}
@@ -158,7 +158,7 @@ export default function BookingForm() {
           <input
             id="email"
             type="email"
-            className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+            className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900 placeholder-gray-500`}
             placeholder="john@example.com"
             {...register('email')}
             disabled={isSubmitting}
@@ -173,7 +173,7 @@ export default function BookingForm() {
             id="dateOfTravel"
             type="date"
             min={new Date().toISOString().split('T')[0]}
-            className={`w-full px-4 py-3 rounded-lg border ${errors.dateOfTravel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+            className={`w-full px-4 py-3 rounded-lg border ${errors.dateOfTravel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900`}
             {...register('dateOfTravel')}
             disabled={isSubmitting}
           />
@@ -188,7 +188,7 @@ export default function BookingForm() {
               id="numberOfPeople"
               type="number"
               min="1"
-              className={`w-full px-4 py-3 rounded-lg border ${errors.numberOfPeople ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+              className={`w-full px-4 py-3 rounded-lg border ${errors.numberOfPeople ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900 placeholder-gray-500`}
               {...register('numberOfPeople', { valueAsNumber: true })}
               disabled={isSubmitting}
             />
@@ -200,7 +200,7 @@ export default function BookingForm() {
               id="numberOfChildren"
               type="number"
               min="0"
-              className={`w-full px-4 py-3 rounded-lg border ${errors.numberOfChildren ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+              className={`w-full px-4 py-3 rounded-lg border ${errors.numberOfChildren ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900 placeholder-gray-500`}
               {...register('numberOfChildren', { valueAsNumber: true })}
               disabled={isSubmitting}
             />
@@ -213,13 +213,13 @@ export default function BookingForm() {
           <label htmlFor="hotelCategory" className="block text-sm font-medium text-gray-700 mb-1">Hotel Category *</label>
           <select
             id="hotelCategory"
-            className={`w-full px-4 py-3 rounded-lg border ${errors.hotelCategory ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50`}
+            className={`w-full px-4 py-3 rounded-lg border ${errors.hotelCategory ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} focus:outline-none focus:ring-2 focus:border-transparent transition-shadow bg-gray-50 text-gray-900`}
             {...register('hotelCategory')}
             disabled={isSubmitting}
           >
-            <option value="Standard">Standard (3 Star)</option>
-            <option value="Deluxe">Deluxe (4 Star)</option>
-            <option value="Luxury">Luxury (5 Star)</option>
+            <option value="Standard" className="text-gray-900 bg-white">Standard (3 Star)</option>
+            <option value="Deluxe" className="text-gray-900 bg-white">Deluxe (4 Star)</option>
+            <option value="Luxury" className="text-gray-900 bg-white">Luxury (5 Star)</option>
           </select>
           {errors.hotelCategory && <p className="mt-1 text-sm text-red-600">{errors.hotelCategory.message}</p>}
         </div>
