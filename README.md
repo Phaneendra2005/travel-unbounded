@@ -90,7 +90,7 @@ travel_unbounded/
   "countryCode": "+91",
   "contactNumber": "9876543210",
   "email": "john@example.com",
-  "dateOfTravel": "2024-12-01",
+  "dateOfTravel": "2027-12-01",
   "numberOfPeople": 2,
   "hotelCategory": "Deluxe",
   "numberOfChildren": 0
@@ -144,7 +144,7 @@ Alternatively, it can be deployed on any platform supporting Next.js (e.g., Netl
 ## Assumptions
 
 - Destination pricing and data (`src/data/destinations.ts`) are dummy data representations for Phase 1.
-- Images are sourced from Unsplash and assumed to remain available (remote pattern configured in `next.config.ts`).
+- Most destination images are sourced from Unsplash. The Iceland Waterfalls and Sri Lanka Tea Plantations images are stored locally in `public/images/` for reliable deployment.
 
 ## Features Not Included
 
