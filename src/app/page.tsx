@@ -1,9 +1,37 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { destinations } from '@/data/destinations';
+import { destinations as staticDestinations } from '@/data/destinations';
 import DestinationCard from '@/components/DestinationCard';
+import dbConnect from '@/lib/mongodb';
+import DestinationModel from '@/models/Destination';
 
-export default function Home() {
+export const revalidate = 60; // revalidate every minute for ISR-like behavior
+
+async function getDestinations() {
+  try {
+    await dbConnect();
+    const dests = await DestinationModel.find().lean();
+    if (dests && dests.length > 0) {
+      // Map _id to string if necessary, but lean() + Next.js handles plain objects well
+      // Ensure we map MongoDB documents to plain objects without strict class prototypes
+      return dests.map(d => ({
+        id: d.id,
+        name: d.name,
+        country: d.country,
+        image: d.image,
+        description: d.description,
+        price: d.price,
+        category: d.category,
+      }));
+    }
+  } catch (error) {
+    console.error('Failed to fetch destinations from DB, falling back to static data', error);
+  }
+  return staticDestinations;
+}
+
+export default async function Home() {
+  const destinations = await getDestinations();
   const indiaDestinations = destinations.filter(d => d.category === 'india');
   const internationalDestinations = destinations.filter(d => d.category === 'international');
 

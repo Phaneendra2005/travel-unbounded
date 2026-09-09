@@ -6,15 +6,17 @@ A full-stack responsive web application for "Travel Unbounded", India's Most Tru
 
 ## Features
 
-- **Responsive Home page:** High-impact hero section, curated India and International destination grids.
+- **Responsive Home page:** High-impact hero section, curated India and International destination grids (driven by MongoDB).
 - **About page:** Company story, philosophy, office locations, and "Why Choose Us" features.
 - **Contact / Enquiry form:** A comprehensive booking enquiry form capturing user details and travel preferences.
-- **Server-side validation:** Strong API validation using Zod to ensure data integrity (including future date validation).
-- **Client-side validation:** Real-time form feedback using React Hook Form and Zod.
-- **MongoDB persistence:** Secure storage of all enquiries in a MongoDB database with timestamps.
+- **AI Travel Chatbot:** A conversational Google Gemini-powered travel assistant that gathers user preferences and generates structured JSON itineraries, rendered as clean UI cards.
+- **Secure Admin Dashboard:** JWT-authenticated dashboard to manage Enquiries and Destinations.
+- **Enquiries Management:** View, search, and update the status (New, Contacted, Converted, Closed) of all customer enquiries.
+- **Destination CRUD:** Admin interface to securely add, edit, and delete travel packages.
+- **Analytics:** Data-driven visualizations (using Recharts) for enquiries over time and status breakdowns.
+- **Server-side validation:** Strong API validation using Zod to ensure data integrity.
+- **MongoDB persistence:** Secure storage of all enquiries and destinations in a MongoDB database.
 - **Polished UX:** Loading states, success/error toasts, and prevention of duplicate submissions.
-- **Responsive design:** Optimized for mobile, tablet, and desktop viewing.
-- **SEO optimized:** Metadata and proper semantic HTML for all pages.
 
 ## Tech Stack
 
@@ -25,6 +27,9 @@ A full-stack responsive web application for "Travel Unbounded", India's Most Tru
 - **ORM / Driver:** Mongoose
 - **Validation:** Zod
 - **Form Handling:** React Hook Form
+- **AI Provider:** Google Gemini API (`@google/generative-ai`)
+- **Authentication:** JWT (`jsonwebtoken`) & `bcryptjs`
+- **Charts:** Recharts
 - **Icons & UI:** Lucide React, Sonner (for toast notifications)
 
 ## Project Structure
@@ -77,7 +82,18 @@ travel_unbounded/
 
 ## Environment Variables
 
-- `MONGODB_URI`: The connection string for your MongoDB Atlas cluster. Must include database name, credentials, and configuration.
+- `MONGODB_URI`: The connection string for your MongoDB Atlas cluster.
+- `GEMINI_API_KEY`: API key for Google Gemini API.
+- `JWT_SECRET`: Secure random string for signing admin session tokens.
+- `ADMIN_EMAIL`: Email for evaluator login.
+- `ADMIN_PASSWORD_HASH`: Bcrypt hash of the evaluator password.
+
+## Admin Access (Evaluator Login)
+
+To access the secure admin dashboard (`/admin`), use the following seeded credentials:
+
+**Email:** `admin@gmail.com`
+**Password:** `TravelAdmin@123`
 
 ## API Endpoint
 
@@ -146,11 +162,10 @@ Alternatively, it can be deployed on any platform supporting Next.js (e.g., Netl
 - Destination pricing and data (`src/data/destinations.ts`) are dummy data representations for Phase 1.
 - All destination images are sourced from Unsplash. For reliability, the Iceland Waterfalls and Sri Lanka Tea Plantations images were downloaded from Unsplash and are stored locally in `public/images/`, while the remaining destination images use Unsplash image URLs.
 
-## Features Not Included
 
-The following Phase 2 features were **intentionally excluded** from this implementation as per assignment instructions:
-- AI travel chatbot widget
-- AI itinerary generator / OpenAI integration
-- Secure admin dashboard for enquiry management
-- Destination Content Management System (CMS)
-- Analytics / Conversion tracking dashboards
+## Phase 2 Implementation Details
+
+- **AI Server Architecture**: The `GEMINI_API_KEY` is completely hidden from the client. All communications to the Gemini API occur securely in `src/app/api/chat/route.ts`. 
+- **Structured Itineraries**: The chatbot is explicitly instructed to output only valid JSON when generating an itinerary, which the server parses and sends to the client for rendering as React cards (`ItineraryCard.tsx`).
+- **Idempotent Destination Seed**: Destinations are loaded from the legacy static files and upserted securely into MongoDB without duplication via the `/api/destinations/seed` route.
+- **Security**: The admin dashboard and APIs strictly check for an `httpOnly` authentication cookie populated via JWT, intercepting unauthenticated attempts seamlessly.

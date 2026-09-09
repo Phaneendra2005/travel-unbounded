@@ -42,6 +42,11 @@ const EnquirySchema = new mongoose.Schema(
       default: 0,
       min: [0, 'Number of children cannot be negative.'],
     },
+    status: {
+      type: String,
+      enum: ['New', 'Contacted', 'Converted', 'Closed'],
+      default: 'New',
+    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt
