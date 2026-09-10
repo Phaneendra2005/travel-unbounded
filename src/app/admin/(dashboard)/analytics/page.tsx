@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import AdminLoader from '@/components/admin/AdminLoader';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell
@@ -38,7 +39,7 @@ export default function AnalyticsPage() {
     fetchAnalytics();
   }, []);
 
-  if (loading) return <div className="p-4">Loading analytics...</div>;
+  if (loading) return <AdminLoader message="Loading analytics..." />;
   if (!data) return <div className="p-4">No data available</div>;
 
   return (
@@ -48,7 +49,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Enquiries Over Time */}
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white shadow rounded-lg p-6 min-w-0">
           <h2 className="text-lg font-medium text-gray-900 mb-4">Enquiries Over Time (Last 30 Days)</h2>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
@@ -65,7 +66,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Status Breakdown */}
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white shadow rounded-lg p-6 min-w-0">
           <h2 className="text-lg font-medium text-gray-900 mb-4">Enquiries by Status</h2>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">

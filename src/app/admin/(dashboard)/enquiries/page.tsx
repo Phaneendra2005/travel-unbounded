@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import AdminLoader from '@/components/admin/AdminLoader';
 
 type Enquiry = {
   _id: string;
@@ -80,7 +81,7 @@ export default function EnquiriesPage() {
   });
 
   if (loading) {
-    return <div className="p-4">Loading enquiries...</div>;
+    return <AdminLoader message="Loading enquiries..." />;
   }
 
   return (

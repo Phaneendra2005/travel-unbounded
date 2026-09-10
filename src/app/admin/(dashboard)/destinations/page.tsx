@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import AdminLoader from '@/components/admin/AdminLoader';
 
 type Destination = {
   _id: string;
@@ -118,13 +119,13 @@ export default function AdminDestinationsPage() {
     setIsModalOpen(true);
   };
 
-  if (loading) return <div className="p-4">Loading destinations...</div>;
+  if (loading) return <AdminLoader message="Loading destinations..." />;
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-2xl font-semibold text-gray-900">Destinations</h1>
-        <div className="space-x-4">
+        <div className="flex flex-wrap gap-2">
           <button onClick={handleSeed} className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
             Seed Data
           </button>
@@ -177,15 +178,15 @@ export default function AdminDestinationsPage() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-            <form onSubmit={handleSave}>
-              <div className="px-6 py-4 border-b border-gray-200">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-full flex flex-col">
+            <form onSubmit={handleSave} className="flex flex-col overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 shrink-0">
                 <h3 className="text-lg font-medium text-gray-900">
                   {editingDest?._id ? 'Edit Destination' : 'Add Destination'}
                 </h3>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-4 overflow-y-auto">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">ID / Slug</label>
                   <input type="text" required className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -227,7 +228,7 @@ export default function AdminDestinationsPage() {
                   </div>
                 </div>
               </div>
-              <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+              <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3 shrink-0">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
                   Cancel
                 </button>
