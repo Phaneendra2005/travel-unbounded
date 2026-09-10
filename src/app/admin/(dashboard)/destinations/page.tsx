@@ -188,38 +188,38 @@ export default function AdminDestinationsPage() {
               <div className="p-6 space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">ID / Slug</label>
-                  <input type="text" required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  <input type="text" required className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     value={editingDest?.id || ''} onChange={(e) => setEditingDest({...editingDest, id: e.target.value})} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Name</label>
-                  <input type="text" required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  <input type="text" required className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     value={editingDest?.name || ''} onChange={(e) => setEditingDest({...editingDest, name: e.target.value})} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Country</label>
-                  <input type="text" required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  <input type="text" required className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     value={editingDest?.country || ''} onChange={(e) => setEditingDest({...editingDest, country: e.target.value})} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                  <input type="text" required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  <input type="text" required className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     value={editingDest?.image || ''} onChange={(e) => setEditingDest({...editingDest, image: e.target.value})} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Description</label>
-                  <textarea required rows={3} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  <textarea required rows={3} className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     value={editingDest?.description || ''} onChange={(e) => setEditingDest({...editingDest, description: e.target.value})} />
                 </div>
                 <div className="flex space-x-4">
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700">Price</label>
-                    <input type="number" required min="0" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    <input type="number" required min="0" className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       value={editingDest?.price || 0} onChange={(e) => setEditingDest({...editingDest, price: Number(e.target.value)})} />
                   </div>
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700">Category</label>
-                    <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    <select className="mt-1 block w-full border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       value={editingDest?.category || 'india'} onChange={(e) => setEditingDest({...editingDest, category: e.target.value as 'india' | 'international'})}>
                       <option value="india">India</option>
                       <option value="international">International</option>
