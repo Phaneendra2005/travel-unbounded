@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import AdminLoader from '@/components/admin/AdminLoader';
+import { Pencil, Trash2 } from 'lucide-react';
 
 type Destination = {
   _id: string;
@@ -161,8 +162,24 @@ export default function AdminDestinationsPage() {
                   <div className="text-sm text-gray-500">₹{dest.price.toLocaleString()}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button onClick={() => openModal(dest)} className="text-blue-600 hover:text-blue-900 mr-4">Edit</button>
-                  <button onClick={() => handleDelete(dest._id)} className="text-red-600 hover:text-red-900">Delete</button>
+                  <div className="flex flex-wrap items-center justify-end gap-2">
+                    <button 
+                      onClick={() => openModal(dest)} 
+                      className="inline-flex items-center px-3 py-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                      aria-label={`Edit ${dest.name}`}
+                    >
+                      <Pencil className="h-4 w-4 mr-2" />
+                      Edit
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(dest._id)} 
+                      className="inline-flex items-center px-3 py-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+                      aria-label={`Delete ${dest.name}`}
+                    >
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

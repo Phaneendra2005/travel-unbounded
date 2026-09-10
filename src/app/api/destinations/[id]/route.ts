@@ -57,7 +57,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     }
 
     await dbConnect();
-    const updated = await Destination.findByIdAndUpdate(id, updateData, { new: true });
+    const updated = await Destination.findByIdAndUpdate(id, updateData, { returnDocument: 'after' });
 
     if (!updated) {
       return NextResponse.json({ success: false, message: 'Destination not found' }, { status: 404 });

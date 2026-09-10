@@ -71,16 +71,32 @@ export async function POST(req: Request) {
     const history = messages.slice(0, -1);
     const latestMessage = messages[messages.length - 1].parts[0].text;
 
+    // Gemini requires history to start with a 'user' role and strictly alternate.
+    // We normalize the history to ensure these rules are met, discarding malformed sequence items if necessary.
+    const validHistory: typeof messages = [];
+    let expectedRole = 'user';
+    
+    for (const msg of history) {
+      if (msg.role === expectedRole) {
+        validHistory.push(msg);
+        expectedRole = expectedRole === 'user' ? 'model' : 'user';
+      } else if (validHistory.length > 0) {
+        // If we get consecutive messages of the same role, we can squash the text into the previous message
+        // to preserve the genuine conversation context instead of blindly dropping it.
+        validHistory[validHistory.length - 1].parts[0].text += '\n\n' + msg.parts[0].text;
+      }
+    }
+
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: {
         role: 'system',
         parts: [{ text: systemInstruction }]
       }
     });
 
-    const chat = model.startChat({ history });
+    const chat = model.startChat({ history: validHistory });
 
     const response = await chat.sendMessage(latestMessage);
     const responseText = response.response.text();

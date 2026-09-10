@@ -36,7 +36,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     const updated = await Enquiry.findByIdAndUpdate(
       id,
       { status: result.data.status },
-      { new: true }
+      { returnDocument: 'after' }
     );
 
     if (!updated) {
