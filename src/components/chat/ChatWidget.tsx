@@ -116,7 +116,7 @@ export default function ChatWidget() {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50 flex flex-col space-y-4">
+          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 bg-gray-50 flex flex-col space-y-4">
             {messages.map((m, idx) => (
               <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[85%] rounded-2xl p-3 text-sm shadow-sm ${
