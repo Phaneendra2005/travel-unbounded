@@ -44,16 +44,15 @@ travel_unbounded/
 ├── src/
 │   ├── app/                # Next.js App Router (pages, layout, api)
 │   │   ├── api/            # API routes
-│   │   │   ├── admin/      # Protected authentication & admin routes
-│   │   │   │   ├── analytics/summary/route.ts
-│   │   │   │   ├── enquiries/route.ts
-│   │   │   │   ├── login/route.ts
-│   │   │   │   └── logout/route.ts
-│   │   │   ├── analytics/summary/route.ts  # Analytics route
-│   │   │   ├── chat/route.ts               # Gemini AI integration
-│   │   │   ├── destinations/route.ts       # Destination routes
-│   │   │   ├── enquiry/route.ts            # Enquiry routes
-│   │   │   └── itineraries/route.ts        # Itinerary save route
+│   │   │   ├── admin/      # Authentication & admin routes
+│   │   │   ├── analytics/summary/ # Analytics route
+│   │   │   ├── chat/       # Gemini AI integration
+│   │   │   ├── destinations/ # Destination routes
+│   │   │   │   ├── [id]/   # Dynamic destination route
+│   │   │   │   └── seed/   # Seed destination route
+│   │   │   ├── enquiry/    # Enquiry routes
+│   │   │   │   └── [id]/   # Dynamic enquiry route
+│   │   │   └── itineraries/# Itinerary save route
 │   │   ├── admin/          # Admin pages
 │   │   │   ├── (dashboard)/# Protected admin dashboard layouts
 │   │   │   │   ├── analytics/page.tsx
@@ -99,17 +98,20 @@ To access the dashboard, use the following assignment evaluator credentials:
 ### Public Endpoints
 - `POST /api/chat`: Handles Gemini AI conversational flows and structured itinerary generation.
 - `POST /api/enquiry`: Submits a new booking enquiry.
-- `PATCH /api/enquiry/:id`: Updates an existing booking enquiry.
 - `GET /api/destinations`: Retrieves all active destination packages.
+- `GET /api/destinations/:id`: Retrieves a specific destination package.
 - `POST /api/itineraries`: Validates and saves a generated itinerary to MongoDB.
+
+### Authentication Endpoints
 - `POST /api/admin/login`: Authenticates the admin and issues a JWT httpOnly cookie.
 - `POST /api/admin/logout`: Clears the authentication session.
 
 ### Protected Admin Endpoints (Require valid JWT Cookie)
+- `PATCH /api/enquiry/:id`: Updates an existing booking enquiry.
 - `POST /api/destinations`: Creates a new destination package.
-- `GET /api/destinations/:id`: Retrieves a specific destination package.
 - `PATCH /api/destinations/:id`: Updates a destination package.
 - `DELETE /api/destinations/:id`: Deletes a destination package.
+- `POST /api/destinations/seed`: Safely seeds initial destination data to the database.
 - `GET /api/analytics/summary`: Retrieves aggregated statistical data for dashboard visualization.
 
 ## Saved Itineraries
