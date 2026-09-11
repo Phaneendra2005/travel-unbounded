@@ -107,6 +107,7 @@ To access the dashboard, use the following assignment evaluator credentials:
 - `POST /api/admin/logout`: Clears the authentication session.
 
 ### Protected Admin Endpoints (Require valid JWT Cookie)
+- `GET /api/admin/enquiries`: Retrieves enquiries for the authenticated admin dashboard.
 - `PATCH /api/enquiry/:id`: Updates an existing booking enquiry.
 - `POST /api/destinations`: Creates a new destination package.
 - `PATCH /api/destinations/:id`: Updates a destination package.
@@ -144,7 +145,7 @@ This project is optimized for deployment on Vercel. When deploying to production
 - **Server-side Gemini API integration**: The `GEMINI_API_KEY` is completely hidden from the client. All communications to the Gemini API occur securely via the server backend.
 - **Structured itinerary generation**: The chatbot evaluates multi-turn inputs and is explicitly instructed to output only valid JSON when generating an itinerary.
 - **JWT/httpOnly-cookie authentication**: Security implementation issuing and verifying strict httpOnly cookies.
-- **Protected admin APIs**: All sensitive data manipulation routes enforce strong JWT verification.
+- **Protected admin APIs**: Protected admin APIs enforce strong JWT verification before accessing or modifying administrative data.
 - **Destination CRUD**: Full integration allowing the secure, dynamic management of website packages.
 - **Analytics**: Real-time aggregation of MongoDB metrics for administration review.
 - **Saved itinerary persistence**: Allowing users to save their chat generation directly into MongoDB.
